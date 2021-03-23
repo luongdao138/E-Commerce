@@ -1,0 +1,7 @@
+export const FETCH_CART = 'FETCH_CART';
+export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
+export const FETCH_CART_FAILURE = 'FETCH_CART_FAILURE';
+
+export const ADD_CART = 'ADD_CART';
+export const ADD_CART_SUCCESS = 'ADD_CART_SUCCESS';
+export const ADD_CART_FAILURE = 'ADD_CART_FAILURE';
