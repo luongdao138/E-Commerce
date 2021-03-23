@@ -41,3 +41,62 @@ export const addCartFailure = () => {
     type: types.ADD_CART_FAILURE,
   };
 };
+
+export const updateCartQuantity = (productId, quantity) => {
+  return {
+    type: types.UPDATE_CART_QUANTITY,
+    payload: { productId, quantity },
+  };
+};
+
+export const updateCartQuantitySuccess = (cart) => {
+  return {
+    type: types.UPDATE_CART_QUANTITY_SUCCESS,
+    payload: cart,
+  };
+};
+
+export const updateCartQuantityFailure = () => {
+  return {
+    type: types.UPDATE_CART_QUANTITY_FAILURE,
+  };
+};
+
+export const removeFromCart = (productId) => {
+  return {
+    type: types.REMOVE_FROM_CART,
+    payload: productId,
+  };
+};
+
+export const removeFromCartSuccess = (cart) => {
+  return {
+    type: types.REMOVE_FROM_CART_SUCCESS,
+    payload: cart,
+  };
+};
+
+export const removeFromCartFailure = () => {
+  return {
+    type: types.REMOVE_FROM_CART_FAILURE,
+  };
+};
+
+export const emptyCart = () => {
+  return {
+    type: types.EMPTY_CART,
+  };
+};
+
+export const emptyCartSuccess = (cart) => {
+  return {
+    type: types.EMPTY_CART_SUCCESS,
+    payload: cart,
+  };
+};
+
+export const emptyCartFailure = () => {
+  return {
+    type: types.EMPTY_CART_FAILURE,
+  };
+};

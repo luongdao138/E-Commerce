@@ -20,6 +20,10 @@ code {
   background: #222;
 } */
 
+a {
+  text-decoration: none;
+}
+
 .loading {
   display: flex;
   position: absolute;
