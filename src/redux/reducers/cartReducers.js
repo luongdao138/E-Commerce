@@ -23,6 +23,27 @@ const cartReducers = (state = initState.cart, action) => {
         ...state,
         item: {},
       };
+    case types.UPDATE_CART_QUANTITY_SUCCESS:
+      return {
+        ...state,
+        item: action.payload,
+      };
+    case types.UPDATE_CART_QUANTITY_FAILURE:
+      return state;
+    case types.REMOVE_FROM_CART_SUCCESS:
+      return {
+        ...state,
+        item: action.payload,
+      };
+    case types.REMOVE_FROM_CART_FAILURE:
+      return state;
+    case types.EMPTY_CART_SUCCESS:
+      return {
+        ...state,
+        item: action.payload,
+      };
+    case types.EMPTY_CART_FAILURE:
+      return state;
     default:
       return state;
   }

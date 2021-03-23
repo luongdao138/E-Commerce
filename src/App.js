@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import * as productActions from './redux/actions/productActions';
 import * as cartActions from './redux/actions/cartActions';
 import Cart from './components/Cart/Cart';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Checkout from './components/CheckoutForm/Checkout/Checkout';
 
 function App(props) {
   const {
@@ -15,6 +17,9 @@ function App(props) {
     cart,
     fetchCart,
     addToCart,
+    updateCartQuantity,
+    removeFromCart,
+    emptyCart,
   } = props;
   useEffect(() => {
     if (products.length === 0) {
@@ -27,22 +32,38 @@ function App(props) {
     addToCart(productId, quantity);
   };
   return (
-    <div className='App'>
-      <NavBar totalItems={cart.total_items} />
-      {isLoading ? (
-        <div className='loading'>
-          <div className='dot'></div>
-          <div className='dot'></div>
-          <div className='dot'></div>
-          <div className='dot'></div>
-          <div className='dot'></div>
-        </div>
-      ) : (
-        // <Products products={products} onAddToCart={handleAddToCart} />
-        <Cart cart={cart} />
-      )}
-      <CssBaseline />
-    </div>
+    <Router>
+      <div className='App'>
+        <NavBar totalItems={cart.total_items} />
+        {isLoading ? (
+          <div className='loading'>
+            <div className='dot'></div>
+            <div className='dot'></div>
+            <div className='dot'></div>
+            <div className='dot'></div>
+            <div className='dot'></div>
+          </div>
+        ) : (
+          <Switch>
+            <Route exact path='/'>
+              <Products products={products} onAddToCart={handleAddToCart} />
+            </Route>
+            <Route exact path='/cart'>
+              <Cart
+                cart={cart}
+                updateCartQuantity={updateCartQuantity}
+                removeFromCart={removeFromCart}
+                emptyCart={emptyCart}
+              />
+            </Route>
+            <Route exact path='/checkout'>
+              <Checkout />
+            </Route>
+          </Switch>
+        )}
+        <CssBaseline />
+      </div>
+    </Router>
   );
 }
 
@@ -64,6 +85,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     addToCart: (productId, quantity) => {
       dispatch(cartActions.addCart(productId, quantity));
+    },
+    updateCartQuantity: (productId, quantity) => {
+      dispatch(cartActions.updateCartQuantity(productId, quantity));
+    },
+    removeFromCart: (productId) => {
+      dispatch(cartActions.removeFromCart(productId));
+    },
+    emptyCart: () => {
+      dispatch(cartActions.emptyCart());
     },
   };
 };
